@@ -16,12 +16,20 @@ const LoginSchema = z.object({
 /**
  * POST /api/auth/login
  */
-export async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function login(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
   try {
     const parsed = LoginSchema.safeParse(req.body);
 
     if (!parsed.success) {
-      throw new AppError(400, parsed.error.errors.map((e) => e.message).join(" | "));
+      const formatted = z.flattenError(parsed.error);
+      throw new AppError(
+        400,
+        Object.values(formatted.fieldErrors).flat().join(" | "),
+      );
     }
 
     const result = await loginAdmin(parsed.data);
@@ -40,7 +48,11 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
  * GET /api/auth/me
  * Returns the currently authenticated admin's info.
  */
-export async function getMe(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function getMe(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
   try {
     if (!req.admin) {
       throw new AppError(401, "Unauthorised.");

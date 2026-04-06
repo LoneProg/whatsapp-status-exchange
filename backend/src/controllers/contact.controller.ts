@@ -35,9 +35,10 @@ export async function submitContact(
     const parsed = CreateContactSchema.safeParse(req.body);
 
     if (!parsed.success) {
+      const formatted = z.flattenError(parsed.error);
       throw new AppError(
         400,
-        parsed.error.errors.map((e) => e.message).join(" | ")
+        Object.values(formatted.fieldErrors).flat().join(" | "),
       );
     }
 

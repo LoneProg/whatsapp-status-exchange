@@ -11,10 +11,10 @@
  * ALWAYS change ADMIN_EMAIL and ADMIN_PASSWORD in production.
  */
 
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import 'dotenv/config';
+import { prisma } from "../src/utils/prisma";
 
-const prisma = new PrismaClient();
 
 async function main() {
   const email = process.env.ADMIN_EMAIL ?? "admin@waexchange.local";
