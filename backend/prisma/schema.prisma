@@ -1,0 +1,33 @@
+// =============================================================
+// Prisma Schema — WhatsApp Status Views Exchange System
+// =============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---- Admin user (seeded manually) ----
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // bcrypt hash
+  createdAt DateTime @default(now())
+
+  @@map("users")
+}
+
+// ---- Public contact submissions ----
+model Contact {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String   @unique // normalised to E.164 e.g. +2348012345678
+  createdAt DateTime @default(now())
+
+  @@index([phone])
+  @@map("contacts")
+}
