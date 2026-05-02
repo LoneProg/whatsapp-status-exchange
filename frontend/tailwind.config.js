@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
         whatsapp: {
-          50:  "#f0fdf4",
+          50: "#f0fdf4",
           100: "#dcfce7",
           200: "#bbf7d0",
           300: "#86efac",
@@ -19,6 +20,8 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ["monospace"],
+        fira: ["Fira Code"],
       },
     },
   },

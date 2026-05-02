@@ -4,6 +4,8 @@
  * Lightweight inline toast — success, error, or info.
  */
 
+import { CheckCircle2, AlertCircle, InfoIcon } from "lucide-vue-next";
+
 withDefaults(
   defineProps<{
     type?: "success" | "error" | "info";
@@ -26,43 +28,28 @@ withDefaults(
       v-if="message"
       :class="[
         'flex items-start gap-3 p-4 rounded-xl text-sm font-medium border',
-        type === 'success' && 'bg-green-50 border-green-200 text-green-800',
-        type === 'error'   && 'bg-red-50   border-red-200   text-red-800',
-        type === 'info'    && 'bg-blue-50  border-blue-200  text-blue-800',
+        type === 'success' && 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-400',
+        type === 'error'   && 'bg-red-50 dark:bg-red-900/20   border-red-200 dark:border-red-800   text-red-800 dark:text-red-400',
+        type === 'info'    && 'bg-blue-50 dark:bg-blue-900/20  border-blue-200 dark:border-blue-800  text-blue-800 dark:text-blue-400',
       ]"
       role="alert"
     >
       <!-- Icon -->
-      <svg
+      <CheckCircle2
         v-if="type === 'success'"
-        class="w-5 h-5 shrink-0 text-green-500 mt-0.5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-      </svg>
-      <svg
+        :size="20"
+        class="shrink-0 mt-0.5"
+      />
+      <AlertCircle
         v-else-if="type === 'error'"
-        class="w-5 h-5 shrink-0 text-red-500 mt-0.5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-      <svg
+        :size="20"
+        class="shrink-0 mt-0.5"
+      />
+      <InfoIcon
         v-else
-        class="w-5 h-5 shrink-0 text-blue-500 mt-0.5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20A10 10 0 0012 2z" />
-      </svg>
+        :size="20"
+        class="shrink-0 mt-0.5"
+      />
       <span>{{ message }}</span>
     </div>
   </Transition>
