@@ -32,7 +32,7 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: "postgresql://wauser:wapassword@db:5432/wa_exchange"
-      JWT_SECRET: "CHANGE_ME_IN_PRODUCTION_USE_OPENSSL_RAND_HEX_64"
+      JWT_SECRET: "Bo7EKb6ifr/4fHVPK5RmXCnmqjSjOMqxyuGeHpBRGBc="
       JWT_EXPIRES_IN: "8h"
       PORT: 4000
       NODE_ENV: production

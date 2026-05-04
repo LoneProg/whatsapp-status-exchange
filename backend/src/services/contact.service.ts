@@ -60,7 +60,8 @@ export async function getAllContacts(): Promise<ContactRecord[]> {
  * Get total contact count.
  */
 export async function getContactCount(): Promise<number> {
-  return prisma.contact.count();
+  const count = await prisma.contact.count();
+  return count; 
 }
 
 /**

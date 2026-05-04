@@ -11,7 +11,7 @@ withDefaults(
     type?: "success" | "error" | "info";
     message: string;
   }>(),
-  { type: "info" }
+  { type: "info" },
 );
 </script>
 
@@ -28,9 +28,12 @@ withDefaults(
       v-if="message"
       :class="[
         'flex items-start gap-3 p-4 rounded-xl text-sm font-medium border',
-        type === 'success' && 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-400',
-        type === 'error'   && 'bg-red-50 dark:bg-red-900/20   border-red-200 dark:border-red-800   text-red-800 dark:text-red-400',
-        type === 'info'    && 'bg-blue-50 dark:bg-blue-900/20  border-blue-200 dark:border-blue-800  text-blue-800 dark:text-blue-400',
+        type === 'success' &&
+          'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-400',
+        type === 'error' &&
+          'bg-red-50 dark:bg-red-900/20   border-red-200 dark:border-red-800   text-red-800 dark:text-red-400',
+        type === 'info' &&
+          'bg-blue-50 dark:bg-blue-900/20  border-blue-200 dark:border-blue-800  text-blue-800 dark:text-blue-400',
       ]"
       role="alert"
     >
@@ -45,11 +48,7 @@ withDefaults(
         :size="20"
         class="shrink-0 mt-0.5"
       />
-      <InfoIcon
-        v-else
-        :size="20"
-        class="shrink-0 mt-0.5"
-      />
+      <InfoIcon v-else :size="20" class="shrink-0 mt-0.5" />
       <span>{{ message }}</span>
     </div>
   </Transition>

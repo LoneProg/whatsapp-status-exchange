@@ -9,6 +9,7 @@ import type {
   ApiResponse,
   ContactRecord,
   AdminStats,
+  ContactStats,
   LoginResult,
 } from "@/types";
 
@@ -77,6 +78,10 @@ export const contactApi = {
   submit: (name: string, phone: string) =>
     http
       .post<ApiResponse<Partial<ContactRecord>>>("/contacts", { name, phone })
+      .then((r) => r.data),
+  contactCount: () =>
+    http
+      .get<ApiResponse<ContactStats>>("/contacts/contacts-count")
       .then((r) => r.data),
 };
 

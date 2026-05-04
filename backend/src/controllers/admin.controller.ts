@@ -74,7 +74,7 @@ export async function exportVcf(
     const vcfContent = generateVcf(contacts);
 
     const timestamp = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
-    const filename = `wa-exchange-contacts-${timestamp}.vcf`;
+    const filename = `woodie-contacts-${timestamp}.vcf`;
 
     res.setHeader("Content-Type", "text/vcard; charset=utf-8");
     res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);

@@ -104,7 +104,7 @@ export const useAdminStore = defineStore("adminData", () => {
     } finally {
       loadingStats.value = false;
     }
-  }
+  }   
 
   async function fetchContacts(): Promise<void> {
     loadingContacts.value = true;

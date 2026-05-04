@@ -4,8 +4,8 @@
  */
 
 import { Request, Response, NextFunction } from "express";
-import { z } from "zod";
-import { createContact } from "../services/contact.service";
+import { success, z } from "zod";
+import { createContact, getContactCount } from "../services/contact.service";
 import { AppError } from "../middleware/errorHandler";
 
 // ── Zod validation schema ─────────────────────────────────
@@ -29,7 +29,7 @@ const CreateContactSchema = z.object({
 export async function submitContact(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const parsed = CreateContactSchema.safeParse(req.body);
@@ -52,6 +52,21 @@ export async function submitContact(
         name: contact.name,
         phone: contact.phone,
       },
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+export async function getContactsCount(
+  _req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const totalContacts = await getContactCount();
+    res.status(200).json({
+      success: true,
+      data: { totalContacts },
     });
   } catch (err) {
     next(err);

@@ -20,6 +20,10 @@ export interface AdminStats {
   totalContacts: number;
 }
 
+export interface ContactStats {
+  totalContacts: number;
+}
+
 export interface AdminInfo {
   id: string;
   email: string;
