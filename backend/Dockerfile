@@ -14,7 +14,8 @@ RUN npm ci
 
 COPY . .
 
-
+# Generate Prisma client
+RUN npm run prisma:generate
 
 # Build app
 RUN npm run build
@@ -42,4 +43,4 @@ ENV PORT=4000
 EXPOSE 4000
 
 # Run migrations + start server
-CMD ["sh", "-c", "npm run prisma:generate && npm run prisma:migrate && npm run prisma:seed && node dist/index.js"]
+CMD ["sh", "-c", "npm run prisma:migrate && npm run prisma:seed && node dist/index.js"]
