@@ -58,4 +58,4 @@ ENV PORT=4000
 EXPOSE 4000
 
 # Run migrations + start server
-CMD ["sh", "-c", "npm run prisma:migrate && npm run prisma:seed && node dist/index.js"]
+CMD ["sh", "-c", "npm run prisma:migrate && node dist/index.js"]
