@@ -13,7 +13,7 @@
 
 import bcrypt from "bcryptjs";
 import 'dotenv/config';
-import { prisma } from "../src/utils/prisma";
+import { prisma } from "../dist/utils/prisma";
 
 
 async function main() {
