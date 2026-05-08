@@ -15,6 +15,9 @@ RUN npm ci
 
 COPY . .
 
+#Add dummmy env file to avoid prisma client generation failure
+ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+
 # Generate Prisma client
 RUN npm run prisma:generate
 
