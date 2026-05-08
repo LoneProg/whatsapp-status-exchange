@@ -49,6 +49,9 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
+    environment:
+      VITE_API_BASE_URL: "/api"
+      BASE_URL: "/app"
     ports:
       - "5173:80"
 

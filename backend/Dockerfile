@@ -7,24 +7,34 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN npm run db:generate
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Build app
 RUN npm run build
 
+
 # ── Production stage ─────────────────────────────────────────
-FROM node:20-alpine AS runner
+FROgitM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Only install production dependencies
+ENV NODE_ENV=production
+
+# Install only production deps
 COPY package*.json ./
 RUN npm ci --omit=dev
 
-# Copy compiled output + Prisma client
+# Copy build + Prisma artifacts
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/prisma ./prisma
 
+# Koyeb uses dynamic port
+ENV PORT=4000
 EXPOSE 4000
 
-# Run migrations then start server
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/index.js"]
+# Run migrations + start server
+CMD ["sh", "-c", "node dist/index.js"]
