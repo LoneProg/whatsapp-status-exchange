@@ -16,7 +16,7 @@ RUN npm run build
 
 
 # ── Production stage ─────────────────────────────────────────
-FROgitM node:20-alpine AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
