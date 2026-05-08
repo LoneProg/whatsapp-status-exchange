@@ -86,7 +86,7 @@ function handleAnotherSubmission() {
   toast.message = "";
 }
 function openWhatsappGroup() {
-  window.open("https://chat.whatsapp.com/hubanajeyatcahbh");
+  window.open("https://chat.whatsapp.com/IkrnEsOp3PDAvNYwUqJGff");
 }
 // ── Lifecycle ───────────────────────────────────────────────
 onMounted(async () => {
