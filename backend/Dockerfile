@@ -3,9 +3,12 @@ FROM ubuntu:22.04 AS builder
 
 WORKDIR /app
 
-RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y nodejs npm
-RUN apt-get install -y openssl
+# Install image dependencies
+RUN apt update -y && apt upgrade -y
+RUN apt install -y nodejs npm
+RUN apt install -y openssl
+
+# Install npm dependencies
 COPY package*.json ./
 RUN npm ci
 
@@ -34,12 +37,10 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/prisma ./prisma
-# RUN npm run prisma:migrate
-# RUN npm run prisma:seed
 
 # Koyeb uses dynamic port
 ENV PORT=4000
 EXPOSE 4000
 
 # Run migrations + start server
-CMD ["sh", "-c", "node dist/index.js", "npm run prisma:migrate", "npm run prisma:seed"]
+CMD ["sh", "-c", "npm run prisma:migrate", "npm run prisma:seed", "node dist/index.js"]
