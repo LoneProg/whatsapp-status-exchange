@@ -3,7 +3,9 @@ FROM ubuntu:22.04 AS builder
 
 WORKDIR /app
 
-RUN apt-get update -y && apt-get install -y openssl
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install -y nodejs npm
+RUN apt-get install -y openssl
 COPY package*.json ./
 RUN npm ci
 
