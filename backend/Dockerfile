@@ -4,7 +4,7 @@ FROM ubuntu:22.04 AS builder
 WORKDIR /app
 
 # Install image dependencies
-RUN apt update -y && apt upgrade -y
+RUN apt update -y
 RUN apt install -y nodejs npm
 RUN apt install -y openssl
 
