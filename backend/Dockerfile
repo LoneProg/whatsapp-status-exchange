@@ -30,6 +30,9 @@ FROM node:22-slim AS runner
 
 WORKDIR /app
 
+#install openssl
+RUN apt install -y openssl
+
 ENV NODE_ENV=production
 
 # Install only production deps
