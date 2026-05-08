@@ -4,10 +4,12 @@ FROM node:22-slim AS builder
 WORKDIR /app
 
 # Install image dependencies
-RUN apt update -y
-
-#install openssl
-RUN apt install -y openssl
+RUN apt-get update -y && apt-get install -y \
+    build-essential \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install npm dependencies
 COPY package*.json ./
@@ -30,8 +32,13 @@ FROM node:22-slim AS runner
 
 WORKDIR /app
 
-#install openssl
-RUN apt install -y openssl
+# Install image dependencies
+RUN apt-get update -y && apt-get install -y \
+    build-essential \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV=production
 
