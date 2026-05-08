@@ -5,7 +5,8 @@ WORKDIR /app
 
 # Install image dependencies
 RUN apt update -y
-RUN apt install -y nodejs npm
+
+#install openssl
 RUN apt install -y openssl
 
 # Install npm dependencies
