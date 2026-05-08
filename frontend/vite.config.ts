@@ -14,7 +14,7 @@ export default defineConfig({
     proxy: {
       // Proxy API requests to the backend during development
       "/api": {
-        target: "http://localhost:4000",
+        target: "https://obliged-vale-areshaze-c181b564.koyeb.app",
         changeOrigin: true,
       },
     },
