@@ -9,7 +9,9 @@ RUN npm ci
 COPY . .
 
 # Generate Prisma client
-RUN npx prisma generate
+RUN npm run prisma:generate
+RUN npm run prisma:migrate
+RUN npm run prisma:seed
 
 # Build app
 RUN npm run build
