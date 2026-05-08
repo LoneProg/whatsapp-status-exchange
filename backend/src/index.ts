@@ -15,6 +15,10 @@ import { adminRouter } from "./routes/admin.routes";
 import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
+
+// If behind a proxy (e.g. in production), trust the first proxy for correct IPs
+app.set("trust proxy", 1);
+
 const PORT = process.env.PORT ?? 4000;
 
 // ── Security headers ─────────────────────────────────────
