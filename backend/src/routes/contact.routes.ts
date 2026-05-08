@@ -28,5 +28,5 @@ export const contactRouter = Router();
 // POST /api/contacts
 contactRouter.post("/", submissionLimiter, submitContact);
 
-//GET /api/contact/contacts-count
+//GET /api/contacts/contacts-count
 contactRouter.get("/contacts-count", getContactsCount);

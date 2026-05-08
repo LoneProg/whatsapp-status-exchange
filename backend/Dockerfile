@@ -58,4 +58,4 @@ ENV PORT=4000
 EXPOSE 4000
 
 # Run migrations + start server
-CMD ["sh", "-c", "npm run prisma:migrate && node dist/index.js"]
+CMD ["sh", "-c", "export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/aiven-ca.pem && npm run prisma:migrate && node dist/index.js"]
