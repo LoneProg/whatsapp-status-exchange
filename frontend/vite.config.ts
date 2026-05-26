@@ -14,7 +14,7 @@ export default defineConfig({
     proxy: {
       // Proxy API requests to the backend during development
       "/api": {
-        target: "https://obliged-vale-areshaze-c181b564.koyeb.app",
+        target: "https://evident-tommy-areshaze-7d747396.koyeb.app",
         changeOrigin: true,
       },
     },
