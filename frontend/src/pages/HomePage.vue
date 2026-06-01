@@ -15,7 +15,7 @@ import { useContactStore } from "@/stores/contact.store";
 
 const contactData = useContactStore();
 const { isDark, toggleTheme } = useTheme();
-const TARGET_REGISTRATIONS = 300; // Adjust this to your target
+const TARGET_REGISTRATIONS = 500; // Adjust this to your target
 const progressPercentage = computed(() => {
   const current = contactData.contact_length?.totalContacts ?? 0;
   return Math.min((current / TARGET_REGISTRATIONS) * 100, 100);
