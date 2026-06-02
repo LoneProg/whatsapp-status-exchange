@@ -22,11 +22,16 @@ export interface ContactRecord {
 /**
  * Validate, normalise, deduplicate, and persist a new contact.
  */
-export async function createContact(dto: CreateContactDto): Promise<ContactRecord> {
+export async function createContact(
+  dto: CreateContactDto,
+): Promise<ContactRecord> {
   // 1. Normalise phone number to E.164
   const normalisedPhone = normalisePhone(dto.phone);
   if (!normalisedPhone) {
-    throw new AppError(400, "Invalid phone number. Please include the country code (e.g. +234...).");
+    throw new AppError(
+      400,
+      "Invalid phone number. Please include the country code (e.g. +234...).",
+    );
   }
 
   // 2. Check for existing entry
@@ -37,6 +42,9 @@ export async function createContact(dto: CreateContactDto): Promise<ContactRecor
   if (existing) {
     throw new AppError(409, "This phone number is already registered.");
   }
+
+  //Add black heart emoji to all registered names before storing to database
+  dto.name = dto.name.trim() + " ♠️♠️";
 
   // 3. Persist
   const contact = await prisma.contact.create({
