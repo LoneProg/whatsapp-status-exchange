@@ -44,7 +44,7 @@ export async function createContact(
   }
 
   //Add black heart emoji to all registered names before storing to database
-  dto.name = dto.name.trim() + " ♠️♠️";
+  dto.name = dto.name.trim() + " 🔱🔱";
 
   // 3. Persist
   const contact = await prisma.contact.create({
